@@ -1,0 +1,17 @@
+Package: matrixvis
+Type: Package
+Title: Matrix Visualization Tools
+Description: Tools for visualising real-valued matrices 
+  (the mathematical object, not necessarily the data structure).
+Version: 0.1.0
+Authors@R: c(
+  person(
+    given  = "David",
+    family = "Fleischer",
+    email  = "david.fleischer@mail.mcgill.ca", 
+    role   = c("aut", "cre"))
+    )
+Maintainer: David Fleischer <daivd.fleischer@mail.mcgill.ca>
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
