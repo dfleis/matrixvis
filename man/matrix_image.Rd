@@ -4,11 +4,32 @@
 \alias{matrix_image}
 \title{Draw an image plot of a matrix.}
 \usage{
-matrix_image(x, y, z, col = NULL, ncol = 64, ...)
+matrix_image(x, y, z, xlab, ylab, xaxt, yaxt, col, ncol = 64, ...)
 }
 \arguments{
-\item{...}{The expected arguments \code{x}, \code{y}, and \code{z}
-of the \code{graphics::image} function.}
+\item{x}{A vector of length \code{ncol(z)} corresponding to the column
+indices of \code{z}. By default \code{x} is set to the integer
+sequence 1, 2, ...,  \code{ncol(z)}. Passed to the
+\code{graphics::image} parameter \code{x}.}
+
+\item{y}{A vector of length \code{nrow(z)} corresponding to the row
+indices of \code{z}. By default{y} is set to the integer
+sequence 1, 2, ..., \code{nrow(z)}. Passed to the
+\code{graphics::image} parameter \code{x}.}
+
+\item{z}{A numeric or logical matrix to be plotted. Elements with values
+\code{NA}, \code{NaN}, or \code{Inf} are permitted (as
+long as not all elements of \code{z} are \code{NA}, \code{NaN},
+\code{Inf}) but will be drawn as blank cells. Note that \code{x} can be
+used as \code{z} if \code{z} not specified (but the values
+passed to \code{y} will be ignored).}
+
+\item{...}{Other arguments to be passed to \code{graphics::image}.}
+
+\item{{xlab, }{ylab} Character strings corresponding to the labels
+for the \eqn{x} and \eqn{y} axes. Default labels
+are set to \code{"Columns"} and \code{"Rows"} for
+the \eqn{x} and \eqn{y} axes, respectively.}
 }
 \description{
 This function displays an image of a matrix via
@@ -23,6 +44,6 @@ the bottom-right.
 n <- 10
 p <- 7
 M <- matrix(rnorm(n * p), nrow = n)
-image(M)
+matrix_image(M)
 
 }
