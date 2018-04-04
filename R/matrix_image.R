@@ -22,10 +22,25 @@
 #'          \code{Inf}) but will be drawn as blank cells. Note that \code{x} can be
 #'          used as \code{z} if \code{z} not specified (but the values
 #'          passed to \code{y} will be ignored).
-#' @param {xlab, ylab} Character strings corresponding to the labels
-#'                     for the \eqn{x} and \eqn{y} axes. Default labels
-#'                     are set to \code{"Columns"} and \code{"Rows"} for
-#'                     the \eqn{x} and \eqn{y} axes, respectively.
+#' @param xlab,ylab Character strings corresponding to the labels
+#'                  for the \eqn{x}- and \eqn{y}-axes. Default labels
+#'                  are set to \code{"Columns"} and \code{"Rows"} for
+#'                  the \eqn{x}- and \eqn{y}-axes, respectively.
+#' @param xaxt,yaxt Axis type for \eqn{x}- and \eqn{y}-axes. Setting
+#'                  \code{xaxt} or \code{yaxt = 'n'} removes axis
+#'                  ticks and text to the \eqn{x}- or \eqn{y}-axes,
+#'                  respectively.
+#' @param col A character vector of colors for use in coloring the
+#'            values of \code{z} (See \code{graphics::image} for details).
+#'            If left unspecified the default color map is provided by
+#'            \code{viridis::viridis_pal(option = col.option)}.
+#' @param col.option The color palette used by \code{viridis::viridis_pal}.
+#'                   The default palette is the viridis gradient given by
+#'                   \code{col.option = "D"}. See \code{viridis::viridis_pal}
+#'                   for other options.
+#' @param ncol The number of color levels for use coloring the values of
+#'             \code{z}. Only relevant if \code{col} is not specified.
+#'
 #'
 #' @param ... Other arguments to be passed to \code{graphics::image}.
 #'
@@ -38,10 +53,9 @@
 #' matrix_image(M)
 #'
 matrix_image <- function(x, y, z,
-                         xlab, ylab,
-                         xaxt, yaxt,
-                         col, ncol = 64, ...) {
-  if (missing(col)) col <- viridis::viridis_pal(option = "D")(ncol)
+                         xlab, ylab, xaxt, yaxt,
+                         col, ncol = 64, col.option = "D", ...) {
+  if (missing(col)) col <- viridis::viridis_pal(option = col.option)(ncol)
   if (missing(xlab)) xlab <- "Columns"
   if (missing(ylab)) ylab <- "Rows"
 
@@ -60,8 +74,8 @@ matrix_image <- function(x, y, z,
     if (missing(y)) y <- seq_len(n) # rows
   }
 
-  if (missing(xaxt)) xaxt.out <- "n"
-  if (missing(yaxt)) yaxt.out <- "n"
+  if (missing(xaxt)) xaxt.out <- "n" else xaxt.out <- xaxt
+  if (missing(yaxt)) yaxt.out <- "n" else yaxt.out <- yaxt
 
   z <- t(apply(z, 2, rev))
 

@@ -4,7 +4,8 @@
 \alias{matrix_image}
 \title{Draw an image plot of a matrix.}
 \usage{
-matrix_image(x, y, z, xlab, ylab, xaxt, yaxt, col, ncol = 64, ...)
+matrix_image(x, y, z, xlab, ylab, xaxt, yaxt, col, ncol = 64,
+  col.option = "D", ...)
 }
 \arguments{
 \item{x}{A vector of length \code{ncol(z)} corresponding to the column
@@ -24,12 +25,29 @@ long as not all elements of \code{z} are \code{NA}, \code{NaN},
 used as \code{z} if \code{z} not specified (but the values
 passed to \code{y} will be ignored).}
 
-\item{...}{Other arguments to be passed to \code{graphics::image}.}
-
-\item{{xlab, }{ylab} Character strings corresponding to the labels
-for the \eqn{x} and \eqn{y} axes. Default labels
+\item{xlab, ylab}{Character strings corresponding to the labels
+for the \eqn{x}- and \eqn{y}-axes. Default labels
 are set to \code{"Columns"} and \code{"Rows"} for
-the \eqn{x} and \eqn{y} axes, respectively.}
+the \eqn{x}- and \eqn{y}-axes, respectively.}
+
+\item{xaxt, yaxt}{Axis type for \eqn{x}- and \eqn{y}-axes. Setting
+\code{xaxt} or \code{yaxt = 'n'} removes axis
+ticks and text to the \eqn{x}- or \eqn{y}-axes,
+respectively.}
+
+\item{col}{A character vector of colors for use in coloring the
+values of \code{z} (See \code{graphics::image} for details).
+If left unspecified the default color map is provided by
+\code{viridis::viridis_pal(option = col.option)}.}
+
+\item{ncol}{The number of color levels for use coloring the values of
+\code{z}. Only relevant if \code{col} is not specified.}
+
+\item{col.option}{The color palette used by \code{viridis::viridis_pal}.
+The default palette is given by \code{col.option = "D"}.
+See \code{viridis::viridis_pal} for other options.}
+
+\item{...}{Other arguments to be passed to \code{graphics::image}.}
 }
 \description{
 This function displays an image of a matrix via
