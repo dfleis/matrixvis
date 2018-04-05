@@ -88,7 +88,7 @@ image_matrix <- function(x, y, z,
   }
   if (missing(yaxt)) {
     if (n > 5) yax <- pretty(1:n) else yax <- (1:n)
-    axis(2, at = yax, labels = yax)
+    axis(2, at = yax, labels = rev(yax))
   }
 
 }
