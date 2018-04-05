@@ -1,8 +1,7 @@
 Package: matrixvis
 Type: Package
 Title: Matrix Visualization Tools
-Description: Tools for visualising real-valued matrices 
-  (the mathematical object, not necessarily the data structure).
+Description: Tools for visualising numeric or logical matrices.
 Version: 0.1.0
 Authors@R: c(
   person(

@@ -40,8 +40,6 @@
 #'                   for other options.
 #' @param ncol The number of color levels for use coloring the values of
 #'             \code{z}. Only relevant if \code{col} is not specified.
-#'
-#'
 #' @param ... Other arguments to be passed to \code{graphics::image}.
 #'
 #' @export
@@ -52,7 +50,7 @@
 #' M <- matrix(rnorm(n * p), nrow = n)
 #' matrix_image(M)
 #'
-matrix_image <- function(x, y, z,
+image_matrix <- function(x, y, z,
                          xlab, ylab, xaxt, yaxt,
                          col, ncol = 64, col.option = "D", ...) {
   if (missing(col)) col <- viridis::viridis_pal(option = col.option)(ncol)
