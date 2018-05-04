@@ -40,6 +40,7 @@
 #'                   for other options.
 #' @param ncol The number of color levels for use coloring the values of
 #'             \code{z}. Only relevant if \code{col} is not specified.
+#' @param legend todo...
 #' @param ... Other arguments to be passed to \code{graphics::image}.
 #'
 #' @export
@@ -52,7 +53,8 @@
 #'
 image_matrix <- function(x, y, z,
                          xlab, ylab, xaxt, yaxt,
-                         col, ncol = 64, col.option = "D", ...) {
+                         col, ncol = 64, col.option = "D",
+                         legend = F, ...) {
   if (missing(col)) col <- viridis::viridis_pal(option = col.option)(ncol)
   if (missing(xlab)) xlab <- "Columns"
   if (missing(ylab)) ylab <- "Rows"
@@ -77,11 +79,18 @@ image_matrix <- function(x, y, z,
 
   z <- t(apply(z, 2, rev))
 
-  image(x = x, y = y, z = z, col = col,
-        xlab = xlab,
-        ylab = ylab,
-        xaxt = xaxt.out,
-        yaxt = yaxt.out, ...)
+  if (legend) {
+    image.plot(x = x, y = y, z = z, col = col,
+               xlab = xlab,
+               ylab = ylab,
+               axes = F, ...)
+  } else {
+    image(x = x, y = y, z = z, col = col,
+          xlab = xlab,
+          ylab = ylab,
+          xaxt = xaxt.out,
+          yaxt = yaxt.out, ...)
+  }
   if (missing(xaxt)) {
     if (p > 5) xax <- pretty(1:p) else xax <- (1:p)
     axis(1, at = xax, labels = xax)
